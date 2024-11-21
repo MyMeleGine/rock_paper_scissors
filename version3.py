@@ -1,6 +1,5 @@
 import random
 
-print("Let's play Rock, Paper, Scissors")
 def get_user_choice():
     choice = input("Choose Rock, Paper, or Scissors: ")
     return choice
@@ -29,8 +28,12 @@ def determine_winner(user_choice, computer_choice):
     return "how did we get here"
 
 
+def play_game():
+    print("Let's play Rock, Paper, Scissors")
+
+
 user_choice = get_user_choice()
 computer_choice = get_computer_choice()
 
-print(determine_winner(user_choice, computer_choice)),
-
+print(f"User chose: {user_choice}")
+print(f"Computer chose: {computer_choice}")
