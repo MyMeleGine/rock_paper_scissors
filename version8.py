@@ -37,7 +37,7 @@ def yes_no(prompt):
         if response in ["y", "n"]:
             return response == "y"
 
-# Save data format: username,rounds_played,user_score,computer_score
+# Save data format: rounds_played,user_score,computer_score
 
 def get_savefile_name(username):
     return f"save_{username.lower()}.txt"
@@ -51,7 +51,7 @@ def write_save(username, rounds_played, user_score, computer_score):
     with open(filename, "w") as f:
         f.write(f"{str(rounds_played)},{str(user_score)},{str(computer_score)}")
 
-def read_save(username, rounds_played, user_score, computer_score):
+def read_save(username):
     filename = get_savefile_name(username)
     if not os.path.exists(filename):
         return
@@ -67,6 +67,7 @@ def read_save(username, rounds_played, user_score, computer_score):
         print(f"\tRounds Played: {rounds_played}")
         print(f"\tScoreboard:  {user_score}-{computer_score} (User, Computer)")
         print()
+    return rounds_played, user_score, computer_score
 
 print("Let's play rock paper scissors! I, the computer, am your opponent...")
 
@@ -75,7 +76,10 @@ username = get_user_name()
 
 
 if has_save(username) and yes_no("Do you want to load your last save?"):
-    read_save(username, rounds_played, user_score, computer_score)
+    save = read_save(username)
+    rounds_played = save[0]
+    user_score = save[1]
+    computer_score = save[2]
 
 
 def get_user_choice():
